@@ -19,5 +19,10 @@ for (let i = 0; i < numberCardsRow*numberCardsRow; i++) {
     createCard(container, numberCardsRow);
 }
 
-
+let children = container.childNodes;
+children.forEach(element => {
+    element.addEventListener('mouseover', function() {
+        element.style.backgroundColor = 'black';
+    });
+});
 
