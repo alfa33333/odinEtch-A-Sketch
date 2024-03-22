@@ -1,6 +1,7 @@
 const container = document.querySelector('#container');
 const containerStyle = getComputedStyle(container);
 const containerWidth = parseInt(containerStyle.width);
+const resetButton = document.querySelector('#resetbutton');
 
 function createCard(container, numberCardsRow) {
         let cards = document.createElement('div');
@@ -14,15 +15,35 @@ function createCard(container, numberCardsRow) {
         container.appendChild(cards);
 }
 
+function setColour (event) {
+    event.target.style.backgroundColor = 'black';
+}
+
+function addCardListeners(container){
+    let children = container.childNodes;
+    children.forEach(element => {
+    element.addEventListener('mouseover', setColour);
+    });
+}
+
+function resetGrid(container) {
+    let newGridSize = prompt('Enter new grid size: ', 16);
+    
+    // while (container.firstChild) {
+    //     container.removeChild(container.firstChild);
+    // }
+}
+
 let numberCardsRow = 16;
 for (let i = 0; i < numberCardsRow*numberCardsRow; i++) {
     createCard(container, numberCardsRow);
 }
 
-let children = container.childNodes;
-children.forEach(element => {
-    element.addEventListener('mouseover', function() {
-        element.style.backgroundColor = 'black';
-    });
-});
+addCardListeners(container);    
 
+
+
+
+resetButton.addEventListener('click', function() {
+    resetGrid(container);
+});
