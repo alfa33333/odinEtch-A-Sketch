@@ -4,16 +4,19 @@ const containerWidth = parseInt(containerStyle.width);
 
 function createCard(container, numberCardsRow) {
         let cards = document.createElement('div');
-        cards.textContent = 'I am a card';
-        cards.style.borderColor = 'red';
+        let borderWidth = 1;
+        let cardSize = containerWidth/numberCardsRow - 2*borderWidth;
+        cards.style.borderColor = 'black';
         cards.style.borderStyle = 'solid';
-        cards.style.flexBasis = containerWidth/numberCardsRow + 'px';
-        cards.style.height = containerWidth/numberCardsRow + 'px';
+        cards.style.borderWidth = borderWidth + 'px';
+        cards.style.flexBasis = cardSize + 'px';
+        cards.style.height = cardSize + 'px';
         container.appendChild(cards);
 }
 
-for (let i = 0; i < 16; i++) {
-    createCard(container, 4);
+let numberCardsRow = 16;
+for (let i = 0; i < numberCardsRow*numberCardsRow; i++) {
+    createCard(container, numberCardsRow);
 }
 
 
