@@ -19,6 +19,12 @@ function setColour (event) {
     event.target.style.backgroundColor = 'black';
 }
 
+function createGrid(container, numberCardsRow) {
+    for (let i = 0; i < numberCardsRow*numberCardsRow; i++) {
+        createCard(container, numberCardsRow);
+    }
+}
+
 function addCardListeners(container){
     let children = container.childNodes;
     children.forEach(element => {
@@ -26,18 +32,29 @@ function addCardListeners(container){
     });
 }
 
+function removeCardListeners(container){
+    let children = container.childNodes;
+    children.forEach(element => {
+    element.removeEventListener('mouseover', setColour);
+    });
+}
+
 function resetGrid(container) {
     let newGridSize = prompt('Enter new grid size: ', 16);
-    
-    // while (container.firstChild) {
-    //     container.removeChild(container.firstChild);
-    // }
+    removeCardListeners(container)
+
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+
 }
 
 let numberCardsRow = 16;
-for (let i = 0; i < numberCardsRow*numberCardsRow; i++) {
-    createCard(container, numberCardsRow);
-}
+// for (let i = 0; i < numberCardsRow*numberCardsRow; i++) {
+//     createCard(container, numberCardsRow);
+// }
+
+createGrid(container, numberCardsRow);
 
 addCardListeners(container);    
 
