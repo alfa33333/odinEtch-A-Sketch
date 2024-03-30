@@ -26,8 +26,21 @@ function setColour (event) {
         red = getRandomIntInclusive(0, 255);
         green = getRandomIntInclusive(0, 255);
         blue = getRandomIntInclusive(0, 255);
-        event.target.style.backgroundColor = 'rgb(' + red + ' ,'+ green +','+ blue + ')';
-        event.target.style.opacity = 0.1;
+        event.target.style.backgroundColor = 'rgba(' + red + ' ,'+ green +','+ blue + ', 0.1)';
+    } else {
+        let value = event.target.style.backgroundColor;
+        let parts = value.match(/[\d.]+/g);
+        let length = parts.length;
+        switch (length) {
+            case 3:
+                break;
+            case 4:
+                parts[3] = parseFloat(parts[3]) + 0.1;
+                event.target.style.backgroundColor = `rgba(${ parts.join(',') })`;
+                break;
+            default:
+                break;
+        }       
     }
 
 }
