@@ -41,11 +41,17 @@ function removeCardListeners(container){
 
 function resetGrid(container) {
     let newGridSize = prompt('Enter new grid size: ', 16);
+    if (newGridSize > 100) {
+        newGridSize = 100;
+    }
     removeCardListeners(container)
 
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
+
+    createGrid(container, newGridSize);
+    addCardListeners(container);   
 
 }
 
