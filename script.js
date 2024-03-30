@@ -50,10 +50,6 @@ function resetGrid(container) {
 }
 
 let numberCardsRow = 16;
-// for (let i = 0; i < numberCardsRow*numberCardsRow; i++) {
-//     createCard(container, numberCardsRow);
-// }
-
 createGrid(container, numberCardsRow);
 
 addCardListeners(container);    
