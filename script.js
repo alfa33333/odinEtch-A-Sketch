@@ -3,6 +3,12 @@ const containerStyle = getComputedStyle(container);
 const containerWidth = parseInt(containerStyle.width);
 const resetButton = document.querySelector('#resetbutton');
 
+function getRandomIntInclusive(min, max) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+  }
+
 function createCard(container, numberCardsRow) {
         let cards = document.createElement('div');
         let borderWidth = 1;
@@ -16,7 +22,14 @@ function createCard(container, numberCardsRow) {
 }
 
 function setColour (event) {
-    event.target.style.backgroundColor = 'black';
+    if (event.target.style.backgroundColor === '') {
+        red = getRandomIntInclusive(0, 255);
+        green = getRandomIntInclusive(0, 255);
+        blue = getRandomIntInclusive(0, 255);
+        event.target.style.backgroundColor = 'rgb(' + red + ' ,'+ green +','+ blue + ')';
+        event.target.style.opacity = 0.1;
+    }
+
 }
 
 function createGrid(container, numberCardsRow) {
